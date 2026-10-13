@@ -1,6 +1,5 @@
 import requests
 import html
-import keyboard
 
 def get_trivia_questions(amount=10, category=None, difficulty=None, qtype=None):
     """
@@ -55,9 +54,28 @@ def get_trivia_questions(amount=10, category=None, difficulty=None, qtype=None):
 
     return questions
 
+def amount_selection():
+    """
+    Allow the user to select the number of questions for the quiz.
+    """
+    while True:
+        try:
+            amount = int(input("First off, how many questions would you like to answer? (1-50): "))
+            if 0 <= amount <= 50:
+                choices.append(amount)
+            else:
+                print("Please enter a number between 1 and 50.")
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
 
 # Main execution block
-trivia_list = get_trivia_questions(amount=1, difficulty="medium", qtype="multiple")
+print("Welcome to the Trivia Quiz Game!")
+print("Enter '0' at any point to quit.\n")
+
+amount = amount_selection()
+
+
+trivia_list = get_trivia_questions(amount=amount, difficulty="medium", qtype="multiple")
 
 if trivia_list:
     for i, q in enumerate(trivia_list, start=1):
