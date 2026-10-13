@@ -8,6 +8,12 @@ Fixed this by importing sys and using sys.quit().
 The user's answer choice being a string while the correct option was an int, so it wouldn't get counted as correct even the correct answer was given.
 Fixed by converting the user's answer choice to an int.
 
+Answer will print if user enter invalid input.
+Fixed by changing when it prints to after telling user if they are right or wrong.
+
+Will crash if there is an invalid input when answering a question.
+Moved elif checking if there was a valid input before elif trying to change input to an int.
+
 ## Tasks
   1. Successfully connect to API and fetch questions
   2. Let users choose number of questions, category, and difficulty
