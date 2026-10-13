@@ -130,6 +130,7 @@ trivia_list = get_trivia_questions(amount=amount, category=category, difficulty=
 
 for i, q in enumerate(trivia_list, start=1):
     correct_option = 0
+    validInput = False
 
     print(f"\nQ{i}: {q['question']}")
     options = q["incorrect_answers"] + [q["correct_answer"]]
@@ -140,17 +141,20 @@ for i, q in enumerate(trivia_list, start=1):
         print(f"  {j}. {opt}")
         if opt == q["correct_answer"]:
             correct_option = j
-    
-    answer = input("Your answer (1-4): ")
-    if answer == '0':
-        print(early_quit_message(points, i, amount))
-        sys.exit(0)
-    elif answer not in ['1', '2', '3', '4']:
-        print("Invalid input. Please enter a number between 1 and 4.\n")
-    elif int(answer) == correct_option:
-        print(f"Correct!\nAnswer: {q['correct_answer']}\n")
-        points += 1
-    elif answer in ['1', '2', '3', '4']:
-        print(f"Incorrect!\nAnswer: {q['correct_answer']}\n")
+
+    while not validInput:
+        answer = input("Your answer (1-4): ")
+        if answer == '0':
+            print(early_quit_message(points, i, amount))
+            sys.exit(0)
+        elif answer not in ['1', '2', '3', '4']:
+            print("Invalid input. Please enter a number between 1 and 4.\n")
+        elif int(answer) == correct_option:
+            print(f"Correct!\nAnswer: {q['correct_answer']}\n")
+            points += 1
+            validInput = True
+        elif answer in ['1', '2', '3', '4']:
+            print(f"Incorrect!\nAnswer: {q['correct_answer']}\n")
+            validInput = True
 
 print(final_score(points, amount))

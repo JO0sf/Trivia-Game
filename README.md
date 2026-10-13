@@ -14,6 +14,9 @@ Fixed by changing when it prints to after telling user if they are right or wron
 Will crash if there is an invalid input when answering a question.
 Moved elif checking if there was a valid input before elif trying to change input to an int.
 
+Won't loop and let user retry question if an invalid input was given.
+Fixed by adding a isValid boolean variable that will keep looping until a valid input is given.
+
 ## Tasks
   1. Successfully connect to API and fetch questions
   2. Let users choose number of questions, category, and difficulty
