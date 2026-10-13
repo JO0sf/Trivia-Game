@@ -60,11 +60,27 @@ def amount_selection():
     """
     while True:
         try:
-            amount = int(input("First off, how many questions would you like to answer? (1-50): "))
+            amount = int(input("\nFirst off, how many questions would you like to answer? (1-50): "))
             if 0 <= amount <= 50:
-                choices.append(amount)
+                return amount
             else:
                 print("Please enter a number between 1 and 50.")
+        except ValueError:
+            print("Invalid input. Please enter a valid number.")
+
+def category_selection():
+    """
+    Allow the user to select the category for the quiz questions.
+    """
+    while True:
+        try:
+            category = int(input("\nPlease select a category:\n9. General Knowledge\n10. Entertainment: Books\n11. Entertainment: Film\n12. Entertainment: Music\n13. Entertainment: Musicals & Theatres\n14. Entertainment: Television\n15. Entertainment: Video Games\n16. Entertainment: Board Games\n17. Science & Nature\n18. Science: Computers\n19. Science: Mathematics\n20. Mythology\n21. Sports\n22. Geography\n23. History\n24. Politics\n25. Art\n26. Celebrities\n27. Animals\n28. Vehicles\n29. Entertainment: Comics\n30. Science: Gadgets\n31. Entertainment: Japanese Anime & Manga\n32. Entertainment: Cartoon & Animations\nEnter the number corresponding to your choice (or 8 for any category): "))
+            if 9 <= category <= 32 or category == 0:
+                return category
+            elif category == 8:
+                return None
+            else:
+                print("Please enter a number between 8 and 32.")
         except ValueError:
             print("Invalid input. Please enter a valid number.")
 
@@ -73,9 +89,9 @@ print("Welcome to the Trivia Quiz Game!")
 print("Enter '0' at any point to quit.\n")
 
 amount = amount_selection()
+category = category_selection()
 
-
-trivia_list = get_trivia_questions(amount=amount, difficulty="medium", qtype="multiple")
+trivia_list = get_trivia_questions(amount=amount, category=category, difficulty=None, qtype="multiple")
 
 if trivia_list:
     for i, q in enumerate(trivia_list, start=1):
