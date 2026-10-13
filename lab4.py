@@ -65,7 +65,7 @@ def amount_selection():
             if 1 <= amount <= 50:
                 return amount
             elif amount == 0:
-                print(goodbye_message)
+                print(goodbye_message())
                 sys.exit(0)
             else:
                 print("Please enter a number between 1 and 50.")
@@ -84,7 +84,7 @@ def category_selection():
             elif category == 8:
                 return None
             elif category == 0:
-                print(goodbye_message)
+                print(goodbye_message())
                 sys.exit(0)
             else:
                 print("Please enter a number between 8 and 32.")
@@ -102,7 +102,7 @@ def difficulty_selection():
         elif difficulty == "any":
             return None
         elif difficulty == "0":
-            print(goodbye_message)
+            print(goodbye_message())
             sys.exit(0)
         else:
             print("Invalid input. Please enter 'easy', 'medium', 'hard', or 'any'.")
@@ -111,7 +111,7 @@ def goodbye_message():
     return "Exiting the trivia quiz. Goodbye!"
 
 def final_score(points=0, total=0):
-    return f"Final score: {points}/{total}\n{goodbye_message}"
+    return f"Final score: {points}/{total}\n{goodbye_message()}"
 
 def early_quit_message(points=0, attempted=0, total=0):
     return f"{attempted}/{total} questions attempted\n{final_score(points, total)}"
